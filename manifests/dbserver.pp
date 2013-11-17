@@ -21,4 +21,4 @@ postgresql::server::db { 'wurkhappy':
   user     => 'wurkhappy',
   password => postgresql_password('wurkhappy', 'whcoll@b'),
 }
-include daemontools
+include wal_e
