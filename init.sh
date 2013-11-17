@@ -1,7 +1,7 @@
 ~!/bin/bash
 sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
-yum install puppet
-yum install git
+yum -y install puppet
+yum -y install git
 mkdir .ssh
 mv git-rsa .ssh/
 touch .ssh/config
