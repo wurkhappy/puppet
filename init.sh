@@ -3,7 +3,7 @@ sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-
 yum -y install puppet
 yum -y install git
 mkdir .ssh
-mv git-rsa .ssh/
+mv ~/git-rsa .ssh/
 touch .ssh/config
 echo 'IdentityFile ~/.ssh/git_rsa' > .ssh/config
 eval `ssh-agent -s`
