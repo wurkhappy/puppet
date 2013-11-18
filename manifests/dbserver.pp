@@ -40,3 +40,10 @@ cron{ 'db_backup':
 	     hour => 2,
 	     minute => 0,
 }
+cron{'sync_puppet':
+	ensure => present,
+	       command => 'cd /etc/puppet/ && /usr/bin/git pull origin master && /usr/bin/puppet apply /etc/puppet/manifests/dbserver.pp --modulepath=/etc/puppet/modules',
+	       hour => '*',
+	       minute => [0,30],
+}
+
