@@ -18,6 +18,8 @@ cron{'sync_puppet':
                minute => [0,30],
 }
 
+class {'epel':}
+->
 include '::rabbitmq'
 rabbitmq_plugin {'rabbitmq_admin':
   ensure => present,
