@@ -44,7 +44,7 @@ class wh_firewall::pre {
 	firewall { '007 allow outbound tcp':
 		chain => 'OUTPUT',		
 		      proto    => 'tcp',
-		      outiface => 'eth0',
+		outiface => 'eth0',
 		      state   => ['NEW','ESTABLISHED'],			 
 		      action => 'accept',
 	}
@@ -54,5 +54,9 @@ class wh_firewall::pre {
 		      destination => '127.0.0.1',
 		      action => 'accept',
 	}
-
+	firewall {'009 allow localhost in':
+		proto => 'tcp',
+		      destination => '127.0.0.1',
+		      action => 'accept',
+	}
 }
