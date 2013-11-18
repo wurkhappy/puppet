@@ -26,3 +26,4 @@ class {'wal_e':
 		   aws_key => 'AKIAI2PQ6CTNJJAUMV3Q',
 		   prefix => 's3://wh-pg-backups',
 }
+include wh_firewall

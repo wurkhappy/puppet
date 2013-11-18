@@ -15,6 +15,7 @@ class users {
 		       managehome => true,
 		       shell => '/bin/bash',
 		       require => Group['admin'],
+		       password => '$6$rEtxeK9G$CEGe9oX7WPgHeXyjVHUqXmoQx/1F.jRycWkEn2magcOBfs0e/uG3Ccj22clLUN7eyXDV2X.jmq.a03xA3o6ZC1',
 	}
 	ssh_authorized_key { 'enoch_ssh':
 		user => 'enoch',
