@@ -12,4 +12,4 @@ chmod 400 .ssh/git_rsa
 cd /etc/
 rm -rf puppet/
 git clone git@github.com:wurkhappy/puppet.git
-puppet apply /etc/puppet/manifests/dbserver.pp --modulepath=/etc/puppet/modules
+##puppet apply /etc/puppet/manifests/dbserver.pp --modulepath=/etc/puppet/modules
