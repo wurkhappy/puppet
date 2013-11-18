@@ -33,3 +33,10 @@ class {'wal_e':
 		   prefix => 's3://wh-pg-backups',
 }
 include wh_firewall
+cron{ 'db_backup':
+	user => 'postgres',
+	     ensure => present,
+	     command => '/package/admin/daemontools-0.76/command/envdir /etc/wal-e.d/env wal-e backup-push /var/lib/pgsql/9.3/data',		
+	     hour => 2,
+	     minute => 0,
+}
