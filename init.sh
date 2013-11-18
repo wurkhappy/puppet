@@ -1,4 +1,5 @@
 ~!/bin/bash
+yum -y install glibc
 sudo rpm -ivh http://yum.puppetlabs.com/el/6/products/x86_64/puppetlabs-release-6-7.noarch.rpm
 yum -y install puppet
 yum -y install git
