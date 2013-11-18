@@ -1,3 +1,9 @@
+stage { 'first': 
+	before => Stage['main'],
+}
+class{'basic_pkgs':
+	stage=> first,
+}
 include users
 class { 'timezone':
 	region => 'Etc',

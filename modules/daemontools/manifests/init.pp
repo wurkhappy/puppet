@@ -1,13 +1,4 @@
 class daemontools{
-	package{ 'gcc':
-		ensure => installed,
-	}
-	package{ 'wget':
-		ensure => installed,
-	}
-	package{ 'make':
-		ensure => installed,
-	}
 	exec { '/etc/puppet/modules/daemontools/files/install.sh':
 		unless => ["/usr/bin/test -f /package/admin/daemontools-0.76/command/envdir"],
 		       notify => Exec['/sbin/initctl reload-configuration'],
