@@ -12,6 +12,12 @@ class golang {
 		       path => '/etc/profile',
 		       notify => Exec['/bin/bash -c "source /etc/profile"'],
 	}
+	file_line{'gopath':
+		ensure => present,
+		       line => 'export GOPATH=$HOME/go',
+		       path => '/etc/profile',
+		       notify => Exec['/bin/bash -c "source /etc/profile"'],
+	}
 	exec{ '/bin/bash -c "source /etc/profile"':
 		refreshonly => true,
 	}
