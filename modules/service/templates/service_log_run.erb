@@ -1,0 +1,7 @@
+#!/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+ 
+mkdir -p /var/log/<%= @service_name %>
+chown root:root /var/log/<%= @service_name %>
+exec setuidgid root multilog s10485760 -n5 /var/log/<%= @service_name %>
+

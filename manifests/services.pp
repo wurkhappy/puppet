@@ -45,3 +45,13 @@ firewall { '501 allow inbound for lo':
 class{'rabbitmq':}
 include zeromq
 include golang
+
+file{'/service':
+	ensure => 'directory',
+}
+class{'service':
+	service_name => 'WH-Agreements',
+		     require => File['/service'],
+}
+
+

@@ -7,4 +7,8 @@ class zeromq {
 		package {'zeromq':
 			ensure => installed,
 		}
+	->
+		package {'zeromq-devel':
+			ensure => installed,
+		}
 }
