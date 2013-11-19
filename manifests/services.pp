@@ -51,6 +51,7 @@ file{'/service':
 }
 class{'service':
 	service_name => 'WH-Agreements',
+		     production => true,
 		     require => File['/service'],
 }
 

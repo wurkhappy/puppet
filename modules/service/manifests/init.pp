@@ -1,4 +1,4 @@
-class service ($service_name){
+class service ($service_name, $production = false){
 
 	file{"/service/${service_name}":
 		ensure => 'directory',
@@ -15,6 +15,16 @@ class service ($service_name){
 		ensure =>'file',
 		       content => template('service/service_log_run.erb'),
 		       mode => 0750,
+	}
+	exec{"/usr/bin/git clone git@github.com:wurkhappy/${service_name}.git":
+		unless => ["/usr/bin/test -d /root/go/src/github.com/wurkhappy/${service_name}"],
+		       cwd => '/root/go/src/github.com/wurkhappy',
+		       notify => Exec['install'],
+	}
+	exec{'install':
+		command => "/usr/local/go/bin/go install",
+			cwd => "/root/go/src/github.com/wurkhappy/${service_name}",
+			refreshonly => true,
 	}
 
 }
