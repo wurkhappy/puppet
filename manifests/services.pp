@@ -29,7 +29,6 @@ firewall { '500 allow outbound for lo':
 	      source => '23.92.20.137',		
 	      proto    => 'tcp',
 	      outiface => 'lo',
-	      state   => ['NEW','RELATED','ESTABLISHED'],			 
 	      action => 'accept',
 }
 ->
@@ -38,7 +37,6 @@ firewall { '501 allow inbound for lo':
 	source => '23.92.20.137',		
 	       proto    => 'tcp',
 	       iniface => 'lo',
-	       state   => ['RELATED','ESTABLISHED'],			 
 	       action => 'accept',
 }
 
@@ -46,3 +44,4 @@ firewall { '501 allow inbound for lo':
 ->
 class{'rabbitmq':}
 include zeromq
+include golang
