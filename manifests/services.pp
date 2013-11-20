@@ -44,7 +44,13 @@ firewall { '501 allow inbound for lo':
 ->
 class{'rabbitmq':}
 include zeromq
-include golang
+class{'golang':}
+->
+exec{'main-config':
+command => '/usr/bin/git clone git@github.com:wurkhappy/WH-Config.git',
+	cwd => '/root/go',
+	    unless => ['/usr/bin/test -d /root/go/WH-Config'],
+}
 
 file{'/service':
 	ensure => 'directory',
@@ -93,8 +99,11 @@ wh_service::helper{'WH-Config':
 }
 
 class{'mdp_broker':
-production => true,
+	production => true,
 }
-
-
+ssh_tunnel{'postgres':
+	local_port => 5432,
+		   foreign_port => 5432,
+		   foreign_ip => 'tunnel@192.168.139.152',
+}
 

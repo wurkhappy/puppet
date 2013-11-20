@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -T -N -L <%= @local_port %>:localhost:<%= @foreign_port %> <%= @foreign_ip %>
