@@ -31,13 +31,25 @@ file{'/service':
         ensure => 'directory',
 }
 
+file{'/root/go/src/github.com':
+ensure =>'directory',
+}
+->
+file{'/root/go/src/github.com/wurkhappy':
+ensure => 'directory',
+}
+->
+wh_service::helper{'mdp':
+        repo => 'mdp',
+}
+->
+wh_service::helper{'WH-Config':
+        repo => 'WH-Config',
+}
 wh_service{'WH-WebApp':
         service_name => 'WH-WebApp',
                      production => true,
                      require => File['/service'],
-}
-wh_service::helper{'mdp':
-        repo => 'mdp',
 }
 class { 'redis':
   version => '2.6.16',

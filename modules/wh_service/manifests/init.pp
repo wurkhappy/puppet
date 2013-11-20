@@ -19,6 +19,12 @@ define wh_service ($service_name, $production = false){
 	exec{"/usr/bin/git clone git@github.com:wurkhappy/${service_name}.git":
 		unless => ["/usr/bin/test -d /root/go/src/github.com/wurkhappy/${service_name}"],
 		       cwd => '/root/go/src/github.com/wurkhappy',
+		       notify => Exec["${service_name}deps"],
+	}
+	exec{"${service_name}deps":
+		command => "/usr/local/go/bin/go get ./...",
+			cwd => "/root/go/src/github.com/wurkhappy/${service_name}",
+			refreshonly => true,
 		       notify => Exec["${service_name}install"],
 	}
 	exec{"${service_name}install":

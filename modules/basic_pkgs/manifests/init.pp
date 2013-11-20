@@ -1,7 +1,7 @@
 class basic_pkgs{
-	package{'gcc':
-		ensure => installed,
-	}
+#	package{'gcc':
+#		ensure => installed,
+#	}
 	package{ 'autoconf':
 		ensure => installed,
 	}
