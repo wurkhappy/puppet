@@ -49,10 +49,45 @@ include golang
 file{'/service':
 	ensure => 'directory',
 }
-class{'service':
+wh_service{'WH-Agreements':
 	service_name => 'WH-Agreements',
 		     production => true,
 		     require => File['/service'],
 }
-
-
+wh_service{'WH-Comments':
+	service_name => 'WH-Comments',
+		     production => true,
+		     require => File['/service'],
+}
+wh_service{'WH-Email':
+	service_name => 'WH-Email',
+		     production => true,
+		     require => File['/service'],
+}
+wh_service{'WH-PaymentInfo':
+	service_name => 'WH-PaymentInfo',
+		     production => true,
+		     require => File['/service'],
+}
+wh_service{'WH-Transactions':
+	service_name => 'WH-Transactions',
+		     production => true,
+		     require => File['/service'],
+}
+wh_service{'WH-UserService':
+	service_name => 'WH-UserService',
+		     production => true,
+		     require => File['/service'],
+}
+wh_service::helper{'Rabbitmq-go-wrapper':
+	repo => 'Rabbitmq-go-wrapper',
+}
+wh_service::helper{'Balanced-go':
+	repo => 'Balanced-go',
+}
+wh_service::helper{'mandrill-go':
+	repo => 'mandrill-go',
+}
+wh_service::helper{'WH-Config':
+	repo => 'WH-Config',
+}

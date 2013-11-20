@@ -1,11 +1,11 @@
-class service ($service_name, $production = false){
+define wh_service ($service_name, $production = false){
 
 	file{"/service/${service_name}":
 		ensure => 'directory',
 	}
 	file{"/service/${service_name}/run":
 		ensure =>'file',
-		       content => template('service/service_run.erb'),
+		       content => template('wh_service/service_run.erb'),
 		       mode => 0750,
 	}
 	file{"/service/${service_name}/log":
@@ -13,15 +13,15 @@ class service ($service_name, $production = false){
 	}
 	file{"/service/${service_name}/log/run":
 		ensure =>'file',
-		       content => template('service/service_log_run.erb'),
+		       content => template('wh_service/service_log_run.erb'),
 		       mode => 0750,
 	}
 	exec{"/usr/bin/git clone git@github.com:wurkhappy/${service_name}.git":
 		unless => ["/usr/bin/test -d /root/go/src/github.com/wurkhappy/${service_name}"],
 		       cwd => '/root/go/src/github.com/wurkhappy',
-		       notify => Exec['install'],
+		       notify => Exec["${service_name}install"],
 	}
-	exec{'install':
+	exec{"${service_name}install":
 		command => "/usr/local/go/bin/go install",
 			cwd => "/root/go/src/github.com/wurkhappy/${service_name}",
 			refreshonly => true,
