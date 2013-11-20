@@ -77,4 +77,13 @@ class wh_firewall::pre {
 		      destination =>'192.168.139.151', 
 		      action => 'accept',
 	}
+	firewall { '014 allow owned outbound':
+		chain => 'OUTPUT',
+		      destination => '192.168.139.69',
+		      action => 'accept',
+	}
+	firewall {'015 allow owned in':
+		      destination =>'192.168.139.69', 
+		      action => 'accept',
+	}
 }

@@ -106,4 +106,9 @@ ssh_tunnel{'postgres':
 		   foreign_port => 5432,
 		   foreign_ip => 'tunnel@192.168.139.152',
 }
+ssh_tunnel{'webapp_redis':
+	local_port => 6379,
+		   foreign_port => 6379,
+		   foreign_ip => 'tunnel@192.168.139.69',
+}
 
