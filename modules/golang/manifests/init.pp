@@ -23,7 +23,7 @@ class golang {
 		       mode => 0750,
 	}
 	exec{ '/etc/profile.d/golang.sh':
-command => "/bin/bash -c '/etc/profile.d/golang.sh'",	
+command => "/bin/bash -c '. /etc/profile.d/golang.sh'",	
 refreshonly => true,
 	}
 	file{['/root/go','/root/go/src']:
