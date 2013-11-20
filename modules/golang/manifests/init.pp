@@ -10,17 +10,20 @@ class golang {
 		ensure => present,
 		       line => 'export PATH=$PATH:/usr/local/go/bin',
 		       path => '/etc/profile',
-		       notify => Exec['source /etc/profile'],
+		       notify => Exec['/etc/profile.d/golang.sh'],
 	}
 	file_line{'gopath':
 		ensure => present,
 		       line => 'export GOPATH=/root/go',
-		       path => '/etc/profile',
-		       notify => Exec['source /etc/profile'],
+		       path => '/etc/profile.d/golang.sh',
+		       notify => Exec['/etc/profile.d/golang.sh'],
 	}
-	exec{ 'source /etc/profile':
-		path => $path,		
-		     refreshonly => true,
+	file{'/etc/profile.d/golang.sh':
+		ensure => 'file',
+		       mode => 0750,
+	}
+	exec{ '/etc/profile.d/golang.sh':
+		refreshonly => true,
 	}
 	file{['/root/go','/root/go/src']:
 		ensure => directory,

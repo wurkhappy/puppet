@@ -91,3 +91,10 @@ wh_service::helper{'mandrill-go':
 wh_service::helper{'WH-Config':
 	repo => 'WH-Config',
 }
+
+class{'mdp_broker':
+production => true,
+}
+
+
+
