@@ -17,10 +17,21 @@ class users {
 		       require => Group['admin'],
 		       password => '$6$rEtxeK9G$CEGe9oX7WPgHeXyjVHUqXmoQx/1F.jRycWkEn2magcOBfs0e/uG3Ccj22clLUN7eyXDV2X.jmq.a03xA3o6ZC1',
 	}
+	user { 'tunnel':
+		ensure => 'present',
+		       home => '/home/tunnel',
+		       managehome => true,
+		       shell => '/bin/bash',
+	}	
 	ssh_authorized_key { 'enoch_ssh':
 		user => 'enoch',
 		     type => 'rsa',
-		     key  => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCgGmXqPDimh7PnpNWB6DfwMP2MaCf0d0gGAyJpcW788Z92E7uJpb+qzAuYY1MHwxRoNx5o+038kAycAMJZQ84zHPTF4ZYUdpZd6nmijshaMxp1KrcmXzy7esRhRceVzr3qxb8jcVk0nCb7TCsvtEfuB+apZlqwvO3V/q8IDtf435haBUomRM9e5Gkd4zwgl3Hki14BXAK4DHe+NZKcTHgmNSvBUxrQmKPPjj0X4lMzzYQ9gDXxQM5iVCJh5vFoEY/zqa4QcGVyFSuRyuZ9zO0hYKHnSg1XMlXO0UYHLTY6HYtMasXUcVchvm9rcwHWsjSluTJJlgXwCXPUOvMm0COF'
+		     key  => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCgGmXqPDimh7PnpNWB6DfwMP2MaCf0d0gGAyJpcW788Z92E7uJpb+qzAuYY1MHwxRoNx5o+038kAycAMJZQ84zHPTF4ZYUdpZd6nmijshaMxp1KrcmXzy7esRhRceVzr3qxb8jcVk0nCb7TCsvtEfuB+apZlqwvO3V/q8IDtf435haBUomRM9e5Gkd4zwgl3Hki14BXAK4DHe+NZKcTHgmNSvBUxrQmKPPjj0X4lMzzYQ9gDXxQM5iVCJh5vFoEY/zqa4QcGVyFSuRyuZ9zO0hYKHnSg1XMlXO0UYHLTY6HYtMasXUcVchvm9rcwHWsjSluTJJlgXwCXPUOvMm0COF',
+	}
+	ssh_authorized_key { 'tunnel_ssh':
+		user => 'tunnel',
+		     type => 'rsa',
+		     key  => 'AAAAB3NzaC1yc2EAAAABIwAAAQEAwSUmi9tXfCIBust96CCCTZEtXNj/gC6OR9VgO36o0mATq00Tvm0Q5mglgyXbbHMF+fWA3Xl0FLHK+TpDDILRk1FzhAc+u7Ecks8aYnoIThNv26E0zYTen+YjHQVeWPHoM42SnEkLKsDDJpII+Xqc7aH6Ksd3w75lT3tKUYQ8n0NAjCQDoX+8qpgGPqp2oxsozsYjiQeIAqIuQrSt/hrSdeGRzT4F/OKbw2nRfTxAYkvH7U+/c22WDIe6QEqaComFxHtCKOsyW0pd7y/kFVj69r/6UvLYujgcSsopEmR3bOu3/lZBc8ODyW3gC+plIveQptAeMkNVKvjoLnzsdfx/8w==',
 	}
 	user { 'root':
 		ensure           => 'present',

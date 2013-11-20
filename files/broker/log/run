@@ -1,6 +1,0 @@
-#!/bin/bash
-PATH=/usr/local/bin:/usr/bin:/bin
- 
-mkdir -p /var/log/broker
-chown root:root /var/log/broker
-exec setuidgid root multilog s10485760 -n5 /var/log/broker
