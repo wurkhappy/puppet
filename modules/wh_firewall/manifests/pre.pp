@@ -59,4 +59,26 @@ class wh_firewall::pre {
 		      destination => '127.0.0.1',
 		      action => 'accept',
 	}
+	firewall { '010 allow owned outbound':
+		chain => 'OUTPUT',
+		      proto => 'tcp',
+		      destination => '192.168.139.152',
+		      action => 'accept',
+	}
+	firewall {'011 allow owned in':
+		proto => 'tcp',
+		      destination => '192.168.139.152',
+		      action => 'accept',
+	}
+	firewall { '012 allow owned outbound':
+		chain => 'OUTPUT',
+		      proto => 'tcp',
+		      destination => '192.168.139.151',
+		      action => 'accept',
+	}
+	firewall {'013 allow owned in':
+		proto => 'tcp',
+		      destination =>'192.168.139.151', 
+		      action => 'accept',
+	}
 }
