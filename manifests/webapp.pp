@@ -1,56 +1,85 @@
 stage { 'first': 
-        before => Stage['main'],
+	before => Stage['main'],
 }
 class{'basic_pkgs':
-        stage=> first,
+	stage=> first,
 }
 include users
 class { 'timezone':
-        region => 'Etc',
-               locality => 'UTC',
+	region => 'Etc',
+	       locality => 'UTC',
 }
 include ssh
 include wh_firewall
-cron{'sync_puppet':
-        ensure => present,
-               command => 'cd /etc/puppet/ && /usr/bin/git pull origin master && /usr/bin/puppet apply /etc/puppet/manifests/webapp.pp --modulepath=/etc/puppet/modules',
-               hour => '*',
-               minute => [0,30],
+firewall { '500 inbound web':
+	proto    => 'tcp',
+		 dport => 4001,
+		 action => 'accept',
+}
+firewall { '501 outbound 4000':
+	chain => 'OUTPUT',
+	      proto    => 'tcp',
+	      sport => 4001,
+	      action => 'accept',
 }
 
+
+cron{'sync_puppet':
+	ensure => present,
+	       command => 'cd /etc/puppet/ && /usr/bin/git pull origin master && /usr/bin/puppet apply /etc/puppet/manifests/webapp.pp --modulepath=/etc/puppet/modules',
+	       hour => '*',
+	       minute => [0,30],
+}
+include daemontools
 include zeromq
 class{'golang':}
 ->
 exec{'main-config':
-command => '/usr/bin/git clone git@github.com:wurkhappy/WH-Config.git',
-        cwd => '/root/go',
-            unless => ['/usr/bin/test -d /root/go/WH-Config'],
+	command => '/usr/bin/git clone git@github.com:wurkhappy/WH-Config.git',
+		cwd => '/root/go',
+		unless => ['/usr/bin/test -d /root/go/WH-Config'],
 }
 
 file{'/service':
-        ensure => 'directory',
+	ensure => 'directory',
 }
 
 file{'/root/go/src/github.com':
-ensure =>'directory',
+	ensure =>'directory',
 }
 ->
 file{'/root/go/src/github.com/wurkhappy':
-ensure => 'directory',
+	ensure => 'directory',
 }
 ->
 wh_service::helper{'mdp':
-        repo => 'mdp',
+	repo => 'mdp',
 }
 ->
 wh_service::helper{'WH-Config':
-        repo => 'WH-Config',
+	repo => 'WH-Config',
 }
 wh_service{'WH-WebApp':
-        service_name => 'WH-WebApp',
-                     production => true,
-                     require => File['/service'],
+	service_name => 'WH-WebApp',
+		     production => true,
+		     require => File['/service'],
 }
 class { 'redis':
-  version => '2.6.16',
+	version => '2.6.16',
+}
+
+class{'epel':}
+->
+class{'nodejs':}
+->
+package { 'bower':
+	ensure   => installed,
+		 provider => 'npm',
+		 notify => Exec['webapp bower'],
+}
+exec{'webapp bower':
+	command => 'bower install',
+		cwd => '/root/go/src/github.com/wurkhappy/WH-WebApp',
+		path => '/sbin',
+		refreshonly => true,
 }
