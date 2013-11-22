@@ -13,13 +13,13 @@ include ssh
 include wh_firewall
 firewall { '500 inbound web':
 	proto    => 'tcp',
-		 dport => 4001,
+		 dport => 4000,
 		 action => 'accept',
 }
 firewall { '501 outbound 4000':
 	chain => 'OUTPUT',
 	      proto    => 'tcp',
-	      sport => 4001,
+	      sport => 4000,
 	      action => 'accept',
 }
 
