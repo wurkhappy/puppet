@@ -33,6 +33,17 @@ firewall { '503 outbound 4000':
 	      sport => 80,
 	      action => 'accept',
 }
+firewall { '504 inbound web':
+	proto    => 'tcp',
+		 dport => 4000,
+		 action => 'accept',
+}
+firewall { '505 outbound 4000':
+	chain => 'OUTPUT',
+	      proto    => 'tcp',
+	      sport => 4000,
+	      action => 'accept',
+}
 
 
 cron{'sync_puppet':
@@ -94,3 +105,9 @@ exec{'webapp bower':
 		path => '/sbin',
 		refreshonly => true,
 }
+ssh_tunnel{'rabbitmq-broker':
+	local_port => 5672,
+		   foreign_port => 5672,
+		   foreign_ip => 'tunnel@192.168.139.151',
+}
+
