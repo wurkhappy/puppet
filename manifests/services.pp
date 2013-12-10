@@ -47,9 +47,9 @@ include zeromq
 class{'golang':}
 ->
 exec{'main-config':
-command => '/usr/bin/git clone git@github.com:wurkhappy/WH-Config.git',
-	cwd => '/root/go',
-	    unless => ['/usr/bin/test -d /root/go/WH-Config'],
+	command => '/usr/bin/git clone git@github.com:wurkhappy/WH-Config.git',
+		cwd => '/root/go',
+		unless => ['/usr/bin/test -d /root/go/WH-Config'],
 }
 
 file{'/service':
@@ -96,6 +96,13 @@ wh_service::helper{'mandrill-go':
 }
 wh_service::helper{'WH-Config':
 	repo => 'WH-Config',
+}
+class{'wkhtmltopdf':}
+->
+wh_service{'PDFService':
+	service_name => 'PDFService',
+		     production => true,
+		     require => File['/service'],
 }
 
 class{'mdp_broker':
