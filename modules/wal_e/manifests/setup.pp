@@ -1,4 +1,4 @@
-class wal_e::setup($aws_secret, $aws_key, $prefix) inherits wal_e{
+class wal_e::setup($aws_secret, $aws_key, $prefix) {
 	file{'/etc/wal-e.d':
 		ensure => 'directory',
 	}	
