@@ -55,6 +55,7 @@ exec{'main-config':
 file{'/service':
 	ensure => 'directory',
 }
+class{'daemontools':}
 wh_service{'WH-Agreements':
 	service_name => 'WH-Agreements',
 		     production => true,
