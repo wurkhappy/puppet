@@ -2,6 +2,6 @@
 <% if @production %>
 exec /root/go/bin/<%= @service_name %> -production
 <% else %>
-/root/go/bin/<%= @service_name %>
+exec /root/go/bin/<%= @service_name %>
 <% end %>
 
