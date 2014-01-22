@@ -22,7 +22,14 @@ class users {
 		       home => '/home/tunnel',
 		       managehome => true,
 		       shell => '/bin/bash',
-	}	
+	}
+	user { 'wh':
+		ensure => 'present',
+		       home => '/home/wh',
+		       managehome => true,
+		       shell => '/bin/bash',
+		       password => '$1$ihlrowCw$FnaHyUweev1yv/vdvDi4x.',
+	}
 	ssh_authorized_key { 'enoch_ssh':
 		user => 'enoch',
 		     type => 'rsa',
