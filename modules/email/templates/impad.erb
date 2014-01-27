@@ -1,0 +1,20 @@
+virtdomains:		userid
+defaultdomain:		<%= @hostname %>.wurkhappy.com
+configdirectory:	/var/lib/imap
+partition-default:	/var/spool/imap
+admins:			cyrus
+sievedir:		/var/lib/imap/sieve
+sendmail:		/usr/sbin/sendmail.postfix
+hashimapspool:		true
+allowanonymouslogin:	no
+allowplaintext:		yes
+sasl_pwcheck_method:	auxprop
+sasl_mech_list:		CRAM-MD5 DIGEST-MD5 PLAIN
+tls_cert_file:		/etc/pki/cyrus-imapd/cyrus-imapd.pem
+tls_key_file:		/etc/pki/cyrus-imapd/cyrus-imapd.pem
+tls_ca_file:		/etc/pki/tls/certs/ca-bundle.crt
+
+autocreatequota:		-1
+createonpost:			yes
+autocreateinboxfolders:		spam
+autosubscribeinboxfolders:	spam 

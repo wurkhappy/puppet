@@ -9,7 +9,7 @@ class ssh{
 		       owner => 'root',
 		       group => 'root',
 	}
-	file{ '/root/.ssh/tunnel_rsa':
+	file{ '/home/tunnel/.ssh/tunnel_rsa':
 		source => 'puppet:///modules/ssh/tunnel_rsa',
 		       owner => 'root',
 		       group => 'root',
@@ -17,7 +17,7 @@ class ssh{
 	}
 	file_line{'tunnel_ident':
 		ensure => present,
-		       line => 'IdentityFile ~/.ssh/tunnel_rsa',
-		       path => '/root/.ssh/config',
+		       line => 'IdentityFile /home/tunnel/.ssh/tunnel_rsa',
+		       path => '/home/tunnel/.ssh/config',
 	}
 }

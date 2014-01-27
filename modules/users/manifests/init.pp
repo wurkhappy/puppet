@@ -4,7 +4,8 @@ class users {
 		      group => root,
 		      mode => 440,
 		      source => 'puppet:///modules/users/sudoers',
-	}	
+	}
+	#admin is a group that gives sudoers power	
 	group { "admin":
 		ensure => "present",
 	}
@@ -17,12 +18,14 @@ class users {
 		       require => Group['admin'],
 		       password => '$6$rEtxeK9G$CEGe9oX7WPgHeXyjVHUqXmoQx/1F.jRycWkEn2magcOBfs0e/uG3Ccj22clLUN7eyXDV2X.jmq.a03xA3o6ZC1',
 	}
+	#tunnel is purely for the purpose of tunneling
 	user { 'tunnel':
 		ensure => 'present',
 		       home => '/home/tunnel',
 		       managehome => true,
 		       shell => '/bin/bash',
 	}
+	#wh is purely for the purpose of running wurkhappy apps/services
 	user { 'wh':
 		ensure => 'present',
 		       home => '/home/wh',
@@ -35,6 +38,7 @@ class users {
 		     type => 'rsa',
 		     key  => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQCgGmXqPDimh7PnpNWB6DfwMP2MaCf0d0gGAyJpcW788Z92E7uJpb+qzAuYY1MHwxRoNx5o+038kAycAMJZQ84zHPTF4ZYUdpZd6nmijshaMxp1KrcmXzy7esRhRceVzr3qxb8jcVk0nCb7TCsvtEfuB+apZlqwvO3V/q8IDtf435haBUomRM9e5Gkd4zwgl3Hki14BXAK4DHe+NZKcTHgmNSvBUxrQmKPPjj0X4lMzzYQ9gDXxQM5iVCJh5vFoEY/zqa4QcGVyFSuRyuZ9zO0hYKHnSg1XMlXO0UYHLTY6HYtMasXUcVchvm9rcwHWsjSluTJJlgXwCXPUOvMm0COF',
 	}
+	#allows other servers to create a tunnel with the current server
 	ssh_authorized_key { 'tunnel_ssh':
 		user => 'tunnel',
 		     type => 'rsa',
