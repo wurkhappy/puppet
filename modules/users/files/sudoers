@@ -114,4 +114,4 @@ root	ALL=(ALL) 	ALL
 ## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
 #includedir /etc/sudoers.d
 
-Defaults mailto="dev@wurkhappy.com",mail_always
+Defaults mailto="dev@wurkhappy.com", mail_always
