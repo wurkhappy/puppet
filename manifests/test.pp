@@ -1,14 +1,18 @@
 stage { 'setup':
 before => Stage['main'],
 }
+stage { 'users':
+before => Stage['setup'],
+}
 stage { 'last': }
 Stage['main'] -> Stage['last']
 
-##Setup Stage
+##Users Stage
 class { 'users':
-stage => 'setup',
+stage => 'users',
 }
 
+##Setup Stage
 class { 'timezone':
 stage => 'setup',
 region => 'Etc',
