@@ -1,4 +1,4 @@
-stage { 'app':}
+stage { 'run_app':}
 Stage['main'] -> Stage['run_app']
 
 ##Stage Tools
