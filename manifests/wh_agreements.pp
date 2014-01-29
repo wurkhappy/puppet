@@ -1,5 +1,5 @@
 stage { 'app':}
-Stage['main'] -> Stage['app']
+Stage['main'] -> Stage['run_app']
 
 ##Stage Tools
 class {'epel':}
@@ -23,4 +23,8 @@ wh_service{'WH-Agreements':
 service_name => 'WH-Agreements',
 production => true,
 require => Exec['main-config'],
+}
+
+class{'daemontools':
+stage => 'run_app',
 }
