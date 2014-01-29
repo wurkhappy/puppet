@@ -1,6 +1,5 @@
-stage { 'app':
-Stage['main'] -> Stage['app'],
-}
+stage { 'app':}
+Stage['main'] -> Stage['app']
 
 ##Stage Tools
 class {'epel':}
