@@ -1,4 +1,4 @@
-stage { 'setup':
+gstage { 'setup':
 before => Stage['main'],
 }
 stage { 'users':
@@ -19,6 +19,7 @@ region => 'Etc',
 locality => 'UTC',
 }
 
+#For some reason need to run visudo after this and just resave - no changes needed. Sudoers file says syntax error when there is none
 class { 'ssh':
 stage => 'setup',
 }
