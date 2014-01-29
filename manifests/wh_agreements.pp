@@ -1,31 +1,28 @@
-stage { 'tools':
-before => Stage['main'],
+stage { 'app':
+Stage['main'] -> Stage['app'],
 }
 
 ##Stage Tools
-class {'epel':
-stage => 'tools',
-}
+class {'epel':}
 package{'erlang':
-	ensure => installed,
-	require => Class['epel'],
+ensure => installed,
+require => Class['epel'],
 }
 class{'rabbitmq':
-stage => 'tools',
 require => Package['erlang'],
 }
-class{'zeromq':
-stage => 'tools',
-}
+class{'zeromq':}
 
 
 exec{'main-config':
-	command => '/usr/bin/git clone git@github.com:wurkhappy/WH-Config.git',
-		cwd => '/home/wh',
-		unless => ['/usr/bin/test -d /home/wh/WH-Config'],
+command => '/usr/bin/git clone git@github.com:wurkhappy/WH-Config.git',
+cwd => '/home/wh',
+unless => ['/usr/bin/test -d /home/wh/WH-Config'],
+stage => 'app',
 }
 
 wh_service{'WH-Agreements':
-	service_name => 'WH-Agreements',
-		     production => true,
+service_name => 'WH-Agreements',
+production => true,
+stage => 'app',
 }
