@@ -22,6 +22,5 @@ unless => ['/usr/bin/test -d /home/wh/WH-Config'],
 wh_service{'WH-Agreements':
 service_name => 'WH-Agreements',
 production => true,
-stage => 'app',
 require => Exec['main-config'],
 }
