@@ -6,14 +6,13 @@ before => Stage['main'],
 class {'epel':
 stage => 'tools',
 }
-->
 package{'erlang':
 	ensure => installed,
-	stage => 'tools',
+	require => Class['epel'],
 }
-->
 class{'rabbitmq':
 stage => 'tools',
+require => Package['erlang'],
 }
 class{'zeromq':
 stage => 'tools',
