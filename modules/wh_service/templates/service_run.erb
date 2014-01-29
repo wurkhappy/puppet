@@ -1,7 +1,7 @@
 #!/bin/sh
 <% if @production %>
-exec /root/go/bin/<%= @service_name %> -production
+exec setuidgid wh /home/wh/<%= @service_name %> -production
 <% else %>
-exec /root/go/bin/<%= @service_name %>
+exec setuidgid wh /home/wh/<%= @service_name %>
 <% end %>
 
