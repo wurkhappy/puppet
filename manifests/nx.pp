@@ -9,7 +9,7 @@ nginx::resource::upstream { '${hostname}.${domain}':
 
 file{"/etc/nginx/sites-available/wurkhappy.com":
 ensure =>'file',
-content => template('nginx_conf.erb'),
+content => template('wh_nginx/nginx_conf.erb'),
 mode => 0750,
 require => Class["nginx"],
 }
