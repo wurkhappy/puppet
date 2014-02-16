@@ -1,4 +1,5 @@
 #!/bin/sh
+cd /home/wh/<%= @service_name %>
 <% if @production %>
 exec setuidgid wh /home/wh/<%= @service_name %>/<%= @service_name %> -production
 <% else %>

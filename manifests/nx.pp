@@ -1,1 +1,0 @@
-class{"wh_nginx":}
