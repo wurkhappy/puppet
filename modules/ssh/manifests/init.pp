@@ -11,8 +11,8 @@ group => 'root',
 }
 file{ '/home/tunnel/.ssh/tunnel_rsa':
 source => 'puppet:///modules/ssh/tunnel_rsa',
-owner => 'root',
-group => 'root',
+owner => 'tunnel',
+group => 'tunnel',
 mode => 0700,
 }
 file{'/home/tunnel/.ssh/config':
