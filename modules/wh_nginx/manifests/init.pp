@@ -1,6 +1,6 @@
 class wh_nginx{
 class{'nginx':}
-nginx::resource::upstream { "li682-64.members.linode.com":
+nginx::resource::upstream { "li241-77.members.linode.com":
                 ensure  => present,
                 members => [
                         '127.0.0.1:4000',

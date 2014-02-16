@@ -1,6 +1,6 @@
 server {
         listen                *:80;
-        server_name           li682-64.members.linode.com *.li682-64.members.linode.com;
+        server_name           li241-77.members.linode.com *.li241-77.members.linode.com;
 
         if ($ssl_protocol = "") {
                 return 301 https://$host$request_uri;
@@ -8,22 +8,22 @@ server {
 
         index  index.html index.htm index.php;
 
-        access_log            /var/log/nginx/li682-64.members.linode.com.access.log;
-        error_log             /var/log/nginx/li682-64.members.linode.com.error.log;
+        access_log            /var/log/nginx/li241-77.members.linode.com.access.log;
+        error_log             /var/log/nginx/li241-77.members.linode.com.error.log;
 
         location /404.html{
                 root /usr/local/nginx/html/;
         }
         location / {
                 proxy_intercept_errors on;
-                proxy_pass          http://li682-64.members.linode.com;
+                proxy_pass          http://li241-77.members.linode.com;
                 proxy_read_timeout  90;
                 error_page 404 /404.html;
         }
 }
 server {
         listen       *:443 ssl;
-        server_name           li682-64.members.linode.com *.li682-64.members.linode.com;
+        server_name           li241-77.members.linode.com *.li241-77.members.linode.com;
 
         ssl on;
         ssl_certificate           /etc/puppet/files/wurkhappy.com.pem;
@@ -36,8 +36,8 @@ server {
 
         index  index.html index.htm index.php;
 
-        access_log            /var/log/nginx/ssl-li682-64.members.linode.com.access.log;
-        error_log             /var/log/nginx/ssl-li682-64.members.linode.com.error.log;
+        access_log            /var/log/nginx/ssl-li241-77.members.linode.com.access.log;
+        error_log             /var/log/nginx/ssl-li241-77.members.linode.com.error.log;
 
         location /404.html{
                 root /usr/local/nginx/html/;
@@ -45,7 +45,7 @@ server {
         location / {
                 error_page 404 /404.html;
                 proxy_intercept_errors on;
-                proxy_pass          http://li682-64.members.linode.com;
+                proxy_pass          http://li241-77.members.linode.com;
                 proxy_read_timeout  90;
         }
 }
