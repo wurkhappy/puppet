@@ -1,0 +1,11 @@
+# Configuration for eth0:1
+DEVICE=eth0:1
+BOOTPROTO=none
+
+# This line ensures that the interface will be brought up during boot.
+ONBOOT=yes
+
+# eth0:1 - Private IPs have no gateway (they are not publicly routable) so all you need to
+# specify is the address and netmask.
+IPADDR=<%= @priv_address %>
+NETMASK=255.255.128.0
