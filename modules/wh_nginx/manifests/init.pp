@@ -13,6 +13,7 @@ content => template('wh_nginx/nginx_conf.erb'),
 mode => 0750,
 }
 exec{"/bin/ln -s /etc/nginx/sites-available/wurkhappy.com /etc/nginx/sites-enabled/wurkhappy.com":
+		unless => ["/usr/bin/test -f /etc/nginx/sites-enabled/wurkhappy.com"],
 subscribe => File["/etc/nginx/sites-available/wurkhappy.com"],
 }
 exec{"/sbin/service nginx restart":

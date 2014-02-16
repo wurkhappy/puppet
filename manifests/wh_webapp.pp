@@ -20,9 +20,6 @@ production => true,
 require => Exec['main-config'],
 }
 
-package{'gcc':
-ensure => installed,
-}
 class{'daemontools':
 stage => 'run_app',
 require => Package['gcc'],
