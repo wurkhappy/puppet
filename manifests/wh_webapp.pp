@@ -5,7 +5,7 @@ Stage['main'] -> Stage['run_app']
 class{"wh_nginx":}
 class{'zeromq':}
 class { 'redis':
-	version => '2.6.16',
+version => '2.6.16',
 }
 
 exec{'main-config':
@@ -18,6 +18,18 @@ wh_service{'WH-WebApp':
 service_name => 'WH-WebApp',
 production => true,
 require => Exec['main-config'],
+}
+
+ssh_tunnel{'broker':
+local_port => 5555,
+foreign_port => 5555,
+foreign_ip => 'tunnel@192.168.139.151',
+}
+
+ssh_tunnel{'rabbitmq-broker':
+local_port => 5672,
+foreign_port => 5672,
+foreign_ip => 'tunnel@192.168.139.151',
 }
 
 class{'daemontools':
