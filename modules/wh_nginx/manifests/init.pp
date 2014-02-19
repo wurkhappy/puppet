@@ -16,7 +16,7 @@ exec{"/bin/ln -s /etc/nginx/sites-available/wurkhappy.com /etc/nginx/sites-enabl
 		unless => ["/usr/bin/test -f /etc/nginx/sites-enabled/wurkhappy.com"],
 subscribe => File["/etc/nginx/sites-available/wurkhappy.com"],
 }
-exec{"/sbin/service nginx restart":
+exec{"/sbin/service nginx reload":
 subscribe => Exec["/bin/ln -s /etc/nginx/sites-available/wurkhappy.com /etc/nginx/sites-enabled/wurkhappy.com"],
 }
 }
