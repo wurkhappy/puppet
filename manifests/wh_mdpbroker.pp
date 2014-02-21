@@ -11,10 +11,8 @@ cwd => '/home/wh',
 unless => ['/usr/bin/test -d /home/wh/WH-Config'],
 }
 
-wh_service{'WH-Agreements':
-service_name => 'WH-Agreements',
-production => true,
-require => Exec['main-config'],
+class{'mdp_broker':
+	production => true,
 }
 
 package{'gcc':
