@@ -1,5 +1,5 @@
 class mdp_broker($production = false){
-	$service_name = 'mdp/mdp_broker'
+	$service_name = 'mdp/broker/mdp_broker'
 		file{'/service/mdp_broker':
 			ensure => 'directory',
 		}
@@ -18,5 +18,6 @@ class mdp_broker($production = false){
 	}
 	exec{'/usr/bin/git clone git@github.com:wurkhappy/mdp.git':
 		unless => '/usr/bin/test -d /home/wh/mdp',
+		cwd => '/home/wh',
 	}
 }
