@@ -1,0 +1,8 @@
+#!/bin/sh
+cd /home/wh/mdp/broker/mdp_broker
+<% if @production %>
+exec setuidgid wh /home/wh/mdp/broker/mdp_broker -production
+<% else %>
+exec setuidgid wh /home/wh/mdp/broker/mdp_broker
+<% end %>
+

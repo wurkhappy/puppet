@@ -1,0 +1,7 @@
+#!/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+ 
+mkdir -p /var/log/mdp_broker
+chown wh:wh /var/log/mdp_broker
+exec setuidgid wh multilog t s10485760 n5 !tai64nlocal /var/log/mdp_broker
+
