@@ -14,7 +14,7 @@ class{'wkhtmltopdf':}
 wh_service{'PDFService':
 service_name => 'PDFService',
 production => true,
-require => Exec['main-config'], Class["wkhtmltopdf"],
+require => [Exec['main-config'], Class["wkhtmltopdf"]],
 }
 
 package{'gcc':
