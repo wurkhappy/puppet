@@ -1,11 +1,6 @@
 stage { 'run_app':}
 Stage['main'] -> Stage['run_app']
 
-class {'epel':}
-package { "mercurial":
-	ensure => installed,
-	require => Class["epel"],
-}
 class{'zeromq':}
 
 exec{'main-config':
@@ -14,8 +9,8 @@ cwd => '/home/wh',
 unless => ['/usr/bin/test -d /home/wh/WH-Config'],
 }
 
-wh_service{'WH-UserService':
-service_name => 'WH-UserService',
+wh_service{'WH-Comments':
+service_name => 'WH-Comments',
 production => true,
 require => Exec['main-config'],
 }
