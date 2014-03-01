@@ -19,7 +19,7 @@ ensure => 'directory',
 }
 file{"/service/logstash-forwarder/run":
 ensure =>'file',
-content => 'puppet:///modules/wh_logstash_forwarder/service_run'),
+content => 'puppet:///modules/wh_logstash_forwarder/service_run',
 mode => 0750,
 }
 file{"/service/logstash-forwarder/log":
@@ -27,7 +27,7 @@ ensure =>'directory',
 }
 file{"/service/logstash-forwarder/log/run":
 ensure =>'file',
-content => 'puppet:///modules/wh_logstash_forwarder/service_log_run'),
+content => 'puppet:///modules/wh_logstash_forwarder/service_log_run',
 mode => 0750,
 }
 }
