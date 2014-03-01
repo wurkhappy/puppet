@@ -1,0 +1,17 @@
+class wh_logstash{
+	class { 'logstash':
+   java_install => true
+ }
+ logstash::configfile { 'input_lj':
+   source  => 'puppet:///modules/wh_logstash/input_lj',
+   order   => 10,
+ }
+  logstash::configfile { 'output':
+<<<<<<< HEAD
+   sou  => 'puppet:///modules/wh_logstash/output',
+=======
+   source  => 'puppet:///modules/wh_logstash/output',
+>>>>>>> 4c89fd3c8664f28457f6d6c9ff1e6971b44e0ca6
+   order   => 20,
+ }
+}

@@ -1,0 +1,2 @@
+#!/bin/sh
+exec setuidgid wh /home/wh/logstash-forwarder -config /home/wh/config.conf

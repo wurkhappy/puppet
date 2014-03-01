@@ -24,9 +24,9 @@ class { 'ssh':
 stage => 'setup',
 }
 
-# class{'wh_firewall':
-# stage => 'setup',
-# }
+class{'wh_firewall':
+stage => 'setup',
+}
 
 class{'email':
 stage => 'setup',
