@@ -7,7 +7,7 @@ class wh_logstash{
    order   => 10,
  }
   logstash::configfile { 'output':
-   file  => 'puppet:///modules/wh_logstash/output',
+   sou  => 'puppet:///modules/wh_logstash/output',
    order   => 20,
  }
 }
