@@ -3,6 +3,5 @@ PATH=/usr/local/bin:/usr/bin:/bin
  
 mkdir -p /var/log/<%= @service_name %>
 chown wh:wh /var/log/<%= @service_name %>
-exec 2>&1
 exec setuidgid wh multilog t s10485760 n5 !tai64nlocal /var/log/<%= @service_name %>
 
